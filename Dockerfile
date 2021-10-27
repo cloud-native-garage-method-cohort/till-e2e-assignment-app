@@ -2,11 +2,10 @@ FROM quay.io/ibmgaragecloud/node:lts-stretch
 
 WORKDIR /usr/src/app
 
-COPY package*.json .
-
-RUN npm run build
-
 COPY . .
+
+RUN npm install
+RUN npm run build
 
 EXPOSE 3000
 
