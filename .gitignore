@@ -33,4 +33,4 @@ yarn-error.log*
 # vercel
 .vercel
 
-quay-io-credentials.Secret.yaml
+*Secret.yaml
