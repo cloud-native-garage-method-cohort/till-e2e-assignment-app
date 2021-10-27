@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: tkn-e2e-assignment-
+spec:
+  params:
+    - name: app-name
+      value: tkn-e2e-assignment
+    - name: source-repo
+      value: https://github.com/cloud-native-garage-method-cohort/till-e2e-assignment-app.git
+    - name: image-repo
+      value: quay.io/tillus/cnb-tkn-e2e-assignment
+  serviceAccountName: build-bot
+  pipelineRef:
+    name: build-push-express
+  workspaces:
+    - name: pipeline-shared-data
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
